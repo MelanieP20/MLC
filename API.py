@@ -17,7 +17,6 @@ else:
 ##Access Token: APP_USR-3426517866057797-032508-8d5459a2989c06d5d123b0e7c16400b9-333848565
 
 ###############################################################################################################################
-
 import requests
 import csv
 from google.colab import files
@@ -36,7 +35,7 @@ if response.status_code == 200:
     data = response.json()
     print(data)
 else:
-    print(f"Erro ao acessar a API: {response.status_code}")
+    print(f"API access error: {response.status_code}")
     print(response.json())
 
 items = data.get('results', [])
@@ -51,6 +50,6 @@ with open(file_path, mode="w", newline='', encoding="utf-8") as file:
     for item in items:
         writer.writerow([item.get("id"), item.get("title"), item.get("price"), item.get("currency_id"), item.get("available_quantity"), item.get("category_id")])
 
-print(f"Dados salvos no arquivo: {file_path}")
+print(f"Data Saved: {file_path}")
 
 files.download(file_path)
